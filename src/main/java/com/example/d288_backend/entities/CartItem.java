@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "cart_items")
@@ -31,12 +33,8 @@ public class CartItem {
     @JoinColumn(name = "vacation_id", referencedColumnName = "vacation_id", nullable = false)
     private Vacation vacation;
 
-    @ManyToMany
-    @JoinTable(
-            name = "excursion_cartitem",
-            joinColumns = @JoinColumn(name = "cart_item_id"),
-            inverseJoinColumns = @JoinColumn(name = "excursion_id")
-    )
-    private java.util.List<Excursion> excursions;
+    @OneToMany(mappedBy = "cartItem", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ExcursionCartItem> excursionCartItems = new ArrayList<>();
 }
+
 
