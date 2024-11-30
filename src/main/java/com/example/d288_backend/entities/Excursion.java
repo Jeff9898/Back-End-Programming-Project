@@ -3,11 +3,10 @@ package com.example.d288_backend.entities;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "excursions")
@@ -20,17 +19,17 @@ public class Excursion {
     @Column(name = "excursion_id", nullable = false)
     private Long id;
 
-    @Column(name = "create_date", nullable = true)
-    private LocalDateTime createDate;
+    @Column(name = "excursion_title", nullable = true)
+    private String excursionTitle;
 
     @Column(name = "excursion_price", nullable = true, precision = 19, scale = 2)
     private BigDecimal excursionPrice;
 
-    @Column(name = "excursion_title", nullable = true)
-    private String excursionTitle;
-
     @Column(name = "image_url", nullable = true)
     private String imageUrl;
+
+    @Column(name = "create_date", nullable = true)
+    private LocalDateTime createDate;
 
     @Column(name = "last_update", nullable = true)
     private LocalDateTime lastUpdate;
@@ -39,8 +38,9 @@ public class Excursion {
     @JoinColumn(name = "vacation_id", referencedColumnName = "vacation_id", nullable = false)
     private Vacation vacation;
 
-    @OneToMany(mappedBy = "excursion", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ExcursionCartItem> cartItems = new ArrayList<>();
+    @ManyToMany(mappedBy = "excursions")
+    private Set<CartItem> cartItems = new HashSet<>();
 }
+
 
 

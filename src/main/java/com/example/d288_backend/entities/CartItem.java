@@ -3,10 +3,9 @@ package com.example.d288_backend.entities;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "cart_items")
@@ -33,8 +32,14 @@ public class CartItem {
     @JoinColumn(name = "vacation_id", referencedColumnName = "vacation_id", nullable = false)
     private Vacation vacation;
 
-    @OneToMany(mappedBy = "cartItem", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ExcursionCartItem> excursionCartItems = new ArrayList<>();
+    @ManyToMany
+    @JoinTable(
+            name = "excursion_cartitem",
+            joinColumns = @JoinColumn(name = "cart_item_id"),
+            inverseJoinColumns = @JoinColumn(name = "excursion_id")
+    )
+    private Set<Excursion> excursions = new HashSet<>();
 }
+
 
 

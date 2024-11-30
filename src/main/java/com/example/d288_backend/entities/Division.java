@@ -3,7 +3,8 @@ package com.example.d288_backend.entities;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import java.time.LocalDateTime;
+
+import java.util.List;
 
 @Entity
 @Table(name = "divisions")
@@ -19,17 +20,12 @@ public class Division {
     @Column(name = "division", nullable = true)
     private String divisionName;
 
-    @Column(name = "create_date", nullable = true)
-    private LocalDateTime createDate;
-
-    @Column(name = "last_update", nullable = true)
-    private LocalDateTime lastUpdate;
-
     @ManyToOne
     @JoinColumn(name = "country_id", referencedColumnName = "country_id", nullable = false)
     private Country country;
 
     @OneToMany(mappedBy = "division")
-    private java.util.List<Customer> customers;
+    private List<Customer> customers;
 }
+
 

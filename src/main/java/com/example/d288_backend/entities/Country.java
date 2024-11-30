@@ -16,15 +16,10 @@ public class Country {
     private Long id;
 
     @Column(name = "country", nullable = true)
-    private String name;
+    private String countryName;
 
-    @Column(name = "create_date", nullable = true)
-    private java.time.LocalDateTime createDate;
-
-    @Column(name = "last_update", nullable = true)
-    private java.time.LocalDateTime lastUpdate;
-
-    @OneToMany(mappedBy = "country")
+    @OneToMany(mappedBy = "country", cascade = CascadeType.ALL)
     private java.util.List<Division> divisions;
 }
+
 
