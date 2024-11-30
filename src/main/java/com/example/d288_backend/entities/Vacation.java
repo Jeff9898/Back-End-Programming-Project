@@ -20,22 +20,22 @@ public class Vacation {
     private Long id;
 
     @Column(name = "vacation_title", nullable = true)
-    private String vacationTitle;
+    private String vacation_title;
 
     @Column(name = "description", nullable = true)
     private String description;
 
     @Column(name = "travel_fare_price", nullable = true, precision = 19, scale = 2)
-    private BigDecimal travelPrice;
+    private BigDecimal travel_price;
 
     @Column(name = "image_url", nullable = true)
-    private String imageUrl;
+    private String image_URL;
 
     @Column(name = "create_date", nullable = true)
-    private LocalDateTime createDate;
+    private LocalDateTime create_date;
 
     @Column(name = "last_update", nullable = true)
-    private LocalDateTime lastUpdate;
+    private LocalDateTime last_update;
 
     @OneToMany(mappedBy = "vacation", cascade = CascadeType.ALL)
     private List<Excursion> excursions;
