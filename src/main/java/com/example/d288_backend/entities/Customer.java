@@ -18,7 +18,7 @@ public class Customer {
     private String address;
 
     @Column(name = "postal_code", nullable = true)
-    private String postalCode;
+    private String postal_code;
 
     @Column(name = "customer_first_name", nullable = true)
     private String firstName;

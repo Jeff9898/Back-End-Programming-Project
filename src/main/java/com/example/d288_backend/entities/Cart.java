@@ -19,10 +19,10 @@ public class Cart {
     private Long id;
 
     @Column(name = "package_price", nullable = true, precision = 19, scale = 2)
-    private BigDecimal packagePrice;
+    private BigDecimal package_price;
 
     @Column(name = "party_size", nullable = true)
-    private Integer partySize;
+    private Integer party_size;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = true)
@@ -32,10 +32,10 @@ public class Cart {
     private String orderTrackingNumber;
 
     @Column(name = "create_date", nullable = true)
-    private LocalDateTime createDate;
+    private LocalDateTime create_date;
 
     @Column(name = "last_update", nullable = true)
-    private LocalDateTime lastUpdate;
+    private LocalDateTime last_update;
 
     @ManyToOne
     @JoinColumn(name = "customer_id", referencedColumnName = "customer_id", nullable = false)

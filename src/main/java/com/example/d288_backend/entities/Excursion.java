@@ -20,19 +20,19 @@ public class Excursion {
     private Long id;
 
     @Column(name = "excursion_title", nullable = true)
-    private String excursionTitle;
+    private String excursion_title;
 
     @Column(name = "excursion_price", nullable = true, precision = 19, scale = 2)
-    private BigDecimal excursionPrice;
+    private BigDecimal excursion_price;
 
     @Column(name = "image_url", nullable = true)
-    private String imageUrl;
+    private String image_URL;
 
     @Column(name = "create_date", nullable = true)
-    private LocalDateTime createDate;
+    private LocalDateTime create_date;
 
     @Column(name = "last_update", nullable = true)
-    private LocalDateTime lastUpdate;
+    private LocalDateTime last_update;
 
     @ManyToOne
     @JoinColumn(name = "vacation_id", referencedColumnName = "vacation_id", nullable = false)

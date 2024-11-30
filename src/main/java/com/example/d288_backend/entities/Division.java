@@ -18,7 +18,7 @@ public class Division {
     private Long id;
 
     @Column(name = "division", nullable = true)
-    private String divisionName;
+    private String division_name;
 
     @ManyToOne
     @JoinColumn(name = "country_id", referencedColumnName = "country_id", nullable = false)

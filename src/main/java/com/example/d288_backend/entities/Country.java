@@ -16,7 +16,7 @@ public class Country {
     private Long id;
 
     @Column(name = "country", nullable = true)
-    private String countryName;
+    private String country_name;
 
     @OneToMany(mappedBy = "country", cascade = CascadeType.ALL)
     private java.util.List<Division> divisions;
