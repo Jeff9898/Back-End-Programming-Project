@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "customers")
 @Getter
@@ -32,5 +35,14 @@ public class Customer {
     @ManyToOne
     @JoinColumn(name = "division_id", referencedColumnName = "division_id", nullable = true)
     private Division division;
+
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    private Set<Cart> carts = new HashSet<>();
+
+
+    public void addCart(Cart cart) {
+        carts.add(cart);
+        cart.setCustomer(this);
+    }
 }
 
