@@ -49,10 +49,13 @@ public class CheckoutServiceImpl implements CheckoutService{
         cart.setStatus(StatusType.ordered);
 
         // Add each CartItem to the Cart
-        cartItems.forEach (cartItem -> {
+       /* cartItems.forEach (cartItem -> {
             cartItem.setCart(cart); // Associate CartItem with Cart
             cartItemRepository.save(cartItem);
                 });
+        */
+
+        cartItems.forEach(cart::add);
 
         // Associate the cart with the customer
         customer.addCart(cart);
