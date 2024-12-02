@@ -28,45 +28,35 @@ public class CheckoutServiceImpl implements CheckoutService{
 
     @Override
     @Transactional
-    public PurchaseResponse placeOrder (Purchase purchase) {
-
-        // Retrieve purchase data
+    public PurchaseResponse placeOrder(Purchase purchase) {
+        //Retrieve cart information
         Cart cart = purchase.getCart();
-
-        // Check if cart is empty, cartItems is null, or cartItems is empty
-        if (cart == null || cart.getCartItems() == null || cart.getCartItems().isEmpty()) {
-            return new PurchaseResponse("Error - Order can not be placed with an empty cart.");
-        }
-
         Customer customer = purchase.getCustomer();
-        Set<CartItem> cartItems = purchase.getCartItems();
-
-        // Generate order tracking number
         String orderTrackingNumber = generateOrderTrackingNumber();
-        cart.setOrderTrackingNumber(orderTrackingNumber);
 
-        // Set status of the cart
-        cart.setStatus(StatusType.ordered);
+        //Populate the cart with cart items
+        Set<CartItem> cartItems = purchase.getCartItems();
+        cartItems.forEach(item -> {
+            item.setCart(cart);
+            cart.add(item);
+        });
 
-        // Add each CartItem to the Cart
-       /* cartItems.forEach (cartItem -> {
-            cartItem.setCart(cart); // Associate CartItem with Cart
-            cartItemRepository.save(cartItem);
-                });
-        */
+        //Check if cart is empty
+        if(cart.getCartItems().isEmpty()) {
+            orderTrackingNumber = "No cart items!";
+        } else {
 
-        cartItems.forEach(cart::add);
+            //Generate tracking number, and set status to 'ordered'
+            cart.setOrderTrackingNumber(orderTrackingNumber);
+            cart.setStatus(StatusType.ordered);
+            cart.setCustomer(customer);
 
-        // Associate the cart with the customer
-        customer.addCart(cart);
-        customerRepository.save(customer);
-
-        // Save the cart
-        cartRepository.save(cart);
-
-        // Return the PurchaseResponse
-        return new PurchaseResponse(orderTrackingNumber);
+            //Save data
+            cartRepository.save(cart);
         }
+
+        return new PurchaseResponse(orderTrackingNumber);
+    }
 
     private String generateOrderTrackingNumber() {
         // generate a random UUID number
