@@ -19,19 +19,19 @@ public class Excursion {
     @Column(name = "excursion_id", nullable = false)
     private Long id;
 
-    @Column(name = "excursion_title", nullable = true)
+    @Column(name = "excursion_title", nullable = false)
     private String excursion_title;
 
-    @Column(name = "excursion_price", nullable = true, precision = 19, scale = 2)
+    @Column(name = "excursion_price", nullable = false, precision = 19, scale = 2)
     private BigDecimal excursion_price;
 
-    @Column(name = "image_url", nullable = true)
+    @Column(name = "image_url", nullable = false)
     private String image_URL;
 
-    @Column(name = "create_date", nullable = true)
+    @Column(name = "create_date", nullable = false)
     private LocalDateTime create_date;
 
-    @Column(name = "last_update", nullable = true)
+    @Column(name = "last_update", nullable = false)
     private LocalDateTime last_update;
 
     @ManyToOne

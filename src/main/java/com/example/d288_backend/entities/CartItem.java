@@ -18,10 +18,10 @@ public class CartItem {
     @Column(name = "cart_item_id", nullable = false)
     private Long id;
 
-    @Column(name = "create_date", nullable = true)
+    @Column(name = "create_date")
     private LocalDateTime create_date;
 
-    @Column(name = "last_update", nullable = true)
+    @Column(name = "last_update")
     private LocalDateTime last_update;
 
     @ManyToOne

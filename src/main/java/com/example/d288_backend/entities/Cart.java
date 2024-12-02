@@ -32,10 +32,10 @@ public class Cart {
     @Column(name = "order_tracking_number", nullable = false)
     private String orderTrackingNumber;
 
-    @Column(name = "create_date", nullable = false)
+    @Column(name = "create_date")
     private LocalDateTime create_date;
 
-    @Column(name = "last_update", nullable = false)
+    @Column(name = "last_update")
     private LocalDateTime last_update;
 
     @ManyToOne

@@ -2,6 +2,7 @@ package com.example.d288_backend.entities;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.Setter;
 
 import java.util.HashSet;
@@ -17,23 +18,24 @@ public class Customer {
     @Column(name = "customer_id", nullable = false)
     private Long id;
 
-    @Column(name = "address", nullable = true)
+    @Column(name = "address", nullable = false)
     private String address;
 
-    @Column(name = "postal_code", nullable = true)
+    @Column(name = "postal_code", nullable = false)
     private String postal_code;
 
-    @Column(name = "customer_first_name", nullable = true)
+    @Column(name = "customer_first_name", nullable = false)
     private String firstName;
 
-    @Column(name = "customer_last_name", nullable = true)
-    private String lastName;  // Matches `lastName` from TypeScript
+    @Column(name = "customer_last_name", nullable = false)
+    private String lastName;
 
-    @Column(name = "phone", nullable = true)
+    @Column(name = "phone", nullable = false)
     private String phone;
 
+    @NonNull
     @ManyToOne
-    @JoinColumn(name = "division_id", referencedColumnName = "division_id", nullable = true)
+    @JoinColumn(name = "division_id", referencedColumnName = "division_id", nullable = false)
     private Division division;
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)

@@ -19,22 +19,22 @@ public class Vacation {
     @Column(name = "vacation_id", nullable = false)
     private Long id;
 
-    @Column(name = "vacation_title", nullable = true)
+    @Column(name = "vacation_title", nullable = false)
     private String vacation_title;
 
-    @Column(name = "description", nullable = true)
+    @Column(name = "description", nullable = false)
     private String description;
 
-    @Column(name = "travel_fare_price", nullable = true, precision = 19, scale = 2)
+    @Column(name = "travel_fare_price", nullable = false, precision = 19, scale = 2)
     private BigDecimal travel_price;
 
-    @Column(name = "image_url", nullable = true)
+    @Column(name = "image_url", nullable = false)
     private String image_URL;
 
-    @Column(name = "create_date", nullable = true)
+    @Column(name = "create_date", nullable = false)
     private LocalDateTime create_date;
 
-    @Column(name = "last_update", nullable = true)
+    @Column(name = "last_update", nullable = false)
     private LocalDateTime last_update;
 
     @OneToMany(mappedBy = "vacation", cascade = CascadeType.ALL)
