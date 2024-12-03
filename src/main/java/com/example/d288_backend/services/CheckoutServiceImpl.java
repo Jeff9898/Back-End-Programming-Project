@@ -43,7 +43,7 @@ public class CheckoutServiceImpl implements CheckoutService{
 
         //Check if cart is empty
         if(cart.getCartItems().isEmpty()) {
-            orderTrackingNumber = "No cart items!";
+            orderTrackingNumber = "Error - Add items to cart before checking out";
         } else {
 
             //Generate tracking number, and set status to 'ordered'
