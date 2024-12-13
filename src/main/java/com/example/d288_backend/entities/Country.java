@@ -3,6 +3,10 @@ package com.example.d288_backend.entities;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import java.util.Date;
 
 @Entity
 @Table(name = "countries")
@@ -17,6 +21,14 @@ public class Country {
 
     @Column(name = "country")
     private String country_name;
+
+    @Column(name = "create_date")
+    @CreationTimestamp
+    private Date create_date;
+
+    @Column(name = "last_update")
+    @UpdateTimestamp
+    private Date last_update;
 
     @OneToMany(mappedBy = "country", cascade = CascadeType.ALL)
     private java.util.List<Division> divisions;

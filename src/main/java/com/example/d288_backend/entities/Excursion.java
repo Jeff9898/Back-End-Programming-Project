@@ -3,8 +3,12 @@ package com.example.d288_backend.entities;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -28,11 +32,13 @@ public class Excursion {
     @Column(name = "image_url", nullable = false)
     private String image_URL;
 
-    @Column(name = "create_date", nullable = false)
-    private LocalDateTime create_date;
+    @Column(name = "create_date")
+    @CreationTimestamp
+    private Date create_date;
 
-    @Column(name = "last_update", nullable = false)
-    private LocalDateTime last_update;
+    @Column(name = "last_update")
+    @UpdateTimestamp
+    private Date last_update;
 
     @ManyToOne
     @JoinColumn(name = "vacation_id", referencedColumnName = "vacation_id", nullable = false)

@@ -21,16 +21,17 @@ public class BootstrapData implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-/*
+
         //Find all customers in db
         List<Customer> customerList = customerRepository.findAll();
 
         //Delete all customers in the db except John Doe
+        /*
         customerList.stream()
                 .filter(customer -> !(customer.getFirstName().equalsIgnoreCase("John") &&
                         customer.getLastName().equalsIgnoreCase("Doe")))
                 .forEach(customerRepository::delete);
- */
+        */
 
         //John Doe already in database
         if(customerRepository.count() == 1) {

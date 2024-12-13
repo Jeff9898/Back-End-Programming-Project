@@ -3,8 +3,12 @@ package com.example.d288_backend.entities;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -32,11 +36,13 @@ public class Cart {
     @Column(name = "order_tracking_number", nullable = false)
     private String orderTrackingNumber;
 
-    @Column(name = "create_date")
-    private LocalDateTime create_date;
+    @Column(name = "create_date", nullable = false)
+    @CreationTimestamp
+    private Date create_date;
 
-    @Column(name = "last_update")
-    private LocalDateTime last_update;
+    @Column(name = "last_update", nullable = false)
+    @UpdateTimestamp
+    private Date last_update;
 
     @ManyToOne
     @JoinColumn(name = "customer_id", referencedColumnName = "customer_id", nullable = false)
